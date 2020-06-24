@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbxy.bxt.mechanic.dao.MechanicMapper">
+    <resultMap id="BaseResultMap" type="com.hbxy.bxt.mechanic.model.Mechanic">
+        <id column="mechanicId" jdbcType="INTEGER" property="mechanicid"/>
+        <result column="mechanicName" jdbcType="VARCHAR" property="mechanicname"/>
+        <result column="mechanicNum" jdbcType="INTEGER" property="mechanicnum"/>
+        <result column="mechanicPassword" jdbcType="VARCHAR" property="mechanicpassword"/>
+        <result column="mechanicBuildingName" jdbcType="VARCHAR" property="mechanicbuildingname"/>
+        <result column="mechanicBuildingId" jdbcType="INTEGER" property="mechanicbuildingid"/>
+        <result column="typid" jdbcType="INTEGER" property="typid"/>
+        <result column="typname" jdbcType="VARCHAR" property="typname"/>
+        <result column="mechanicsex" jdbcType="VARCHAR" property="mechanicsex"/>
+        <result column="mechanicphone" jdbcType="VARCHAR" property="mechanicphone"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    mechanicId, mechanicName, mechanicNum, mechanicPassword, mechanicBuildingName, mechanicBuildingId, 
+    typid, typname, mechanicsex, mechanicphone
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from bxt_mechanic
+        where mechanicId = #{mechanicid,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bxt_mechanic
+    where mechanicId = #{mechanicid,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hbxy.bxt.mechanic.model.Mechanic">
+    insert into bxt_mechanic (mechanicId, mechanicName, mechanicNum, 
+      mechanicPassword, mechanicBuildingName, 
+      mechanicBuildingId, typid, typname, 
+      mechanicsex, mechanicphone)
+    values (#{mechanicid,jdbcType=INTEGER}, #{mechanicname,jdbcType=VARCHAR}, #{mechanicnum,jdbcType=INTEGER}, 
+      #{mechanicpassword,jdbcType=VARCHAR}, #{mechanicbuildingname,jdbcType=VARCHAR}, 
+      #{mechanicbuildingid,jdbcType=INTEGER}, #{typid,jdbcType=INTEGER}, #{typname,jdbcType=VARCHAR}, 
+      #{mechanicsex,jdbcType=VARCHAR}, #{mechanicphone,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hbxy.bxt.mechanic.model.Mechanic">
+        insert into bxt_mechanic
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mechanicid != null">
+                mechanicId,
+            </if>
+            <if test="mechanicname != null">
+                mechanicName,
+            </if>
+            <if test="mechanicnum != null">
+                mechanicNum,
+            </if>
+            <if test="mechanicpassword != null">
+                mechanicPassword,
+            </if>
+            <if test="mechanicbuildingname != null">
+                mechanicBuildingName,
+            </if>
+            <if test="mechanicbuildingid != null">
+                mechanicBuildingId,
+            </if>
+            <if test="typid != null">
+                typid,
+            </if>
+            <if test="typname != null">
+                typname,
+            </if>
+            <if test="mechanicsex != null">
+                mechanicsex,
+            </if>
+            <if test="mechanicphone != null">
+                mechanicphone,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="mechanicid != null">
+                #{mechanicid,jdbcType=INTEGER},
+            </if>
+            <if test="mechanicname != null">
+                #{mechanicname,jdbcType=VARCHAR},
+            </if>
+            <if test="mechanicnum != null">
+                #{mechanicnum,jdbcType=INTEGER},
+            </if>
+            <if test="mechanicpassword != null">
+                #{mechanicpassword,jdbcType=VARCHAR},
+            </if>
+            <if test="mechanicbuildingname != null">
+                #{mechanicbuildingname,jdbcType=VARCHAR},
+            </if>
+            <if test="mechanicbuildingid != null">
+                #{mechanicbuildingid,jdbcType=INTEGER},
+            </if>
+            <if test="typid != null">
+                #{typid,jdbcType=INTEGER},
+            </if>
+            <if test="typname != null">
+                #{typname,jdbcType=VARCHAR},
+            </if>
+            <if test="mechanicsex != null">
+                #{mechanicsex,jdbcType=VARCHAR},
+            </if>
+            <if test="mechanicphone != null">
+                #{mechanicphone,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hbxy.bxt.mechanic.model.Mechanic">
+        update bxt_mechanic
+        <set>
+            <if test="mechanicname != null">
+                mechanicName = #{mechanicname,jdbcType=VARCHAR},
+            </if>
+            <if test="mechanicnum != null">
+                mechanicNum = #{mechanicnum,jdbcType=INTEGER},
+            </if>
+            <if test="mechanicpassword != null">
+                mechanicPassword = #{mechanicpassword,jdbcType=VARCHAR},
+            </if>
+            <if test="mechanicbuildingname != null">
+                mechanicBuildingName = #{mechanicbuildingname,jdbcType=VARCHAR},
+            </if>
+            <if test="mechanicbuildingid != null">
+                mechanicBuildingId = #{mechanicbuildingid,jdbcType=INTEGER},
+            </if>
+            <if test="typid != null">
+                typid = #{typid,jdbcType=INTEGER},
+            </if>
+            <if test="typname != null">
+                typname = #{typname,jdbcType=VARCHAR},
+            </if>
+            <if test="mechanicsex != null">
+                mechanicsex = #{mechanicsex,jdbcType=VARCHAR},
+            </if>
+            <if test="mechanicphone != null">
+                mechanicphone = #{mechanicphone,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where mechanicId = #{mechanicid,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hbxy.bxt.mechanic.model.Mechanic">
+    update bxt_mechanic
+    set mechanicName = #{mechanicname,jdbcType=VARCHAR},
+      mechanicNum = #{mechanicnum,jdbcType=INTEGER},
+      mechanicPassword = #{mechanicpassword,jdbcType=VARCHAR},
+      mechanicBuildingName = #{mechanicbuildingname,jdbcType=VARCHAR},
+      mechanicBuildingId = #{mechanicbuildingid,jdbcType=INTEGER},
+      typid = #{typid,jdbcType=INTEGER},
+      typname = #{typname,jdbcType=VARCHAR},
+      mechanicsex = #{mechanicsex,jdbcType=VARCHAR},
+      mechanicphone = #{mechanicphone,jdbcType=VARCHAR}
+    where mechanicId = #{mechanicid,jdbcType=INTEGER}
+  </update>
+    <select id="findAllMechanic" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from bxt_mechanic
+  </select>
+    <select id="findMechanicByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+      SELECT
+      *
+      FROM
+      bxt_mechanic
+      WHERE
+      mechanicphone = #{mechanicphone,jdbcType=VARCHAR}
+  </select>
+    <select id="findMechanicBytypid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      SELECT
+      *
+      FROM
+      bxt_mechanic
+      WHERE
+      typid = #{typid,jdbcType=INTEGER}
+  </select>
+
+
+</mapper>

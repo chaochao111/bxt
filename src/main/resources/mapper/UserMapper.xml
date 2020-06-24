@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbxy.bxt.user.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.hbxy.bxt.user.model.User">
+    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="userNum" jdbcType="VARCHAR" property="usernum" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userGrade" jdbcType="VARCHAR" property="usergrade" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="buildingName" jdbcType="VARCHAR" property="buildingname" />
+    <result column="buildingId" jdbcType="INTEGER" property="buildingid" />
+    <result column="room" jdbcType="VARCHAR" property="room" />
+    <result column="userEmail" jdbcType="VARCHAR" property="useremail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userId, openid, userNum, userName, userGrade, phone, buildingName, buildingId, room, 
+    userEmail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bxt_user
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bxt_user
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hbxy.bxt.user.model.User">
+    insert into bxt_user (openid)
+    values (#{openid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbxy.bxt.user.model.User">
+    insert into bxt_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="usernum != null">
+        userNum,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="usergrade != null">
+        userGrade,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="buildingname != null">
+        buildingName,
+      </if>
+      <if test="buildingid != null">
+        buildingId,
+      </if>
+      <if test="room != null">
+        room,
+      </if>
+      <if test="useremail != null">
+        userEmail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="usernum != null">
+        #{usernum,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usergrade != null">
+        #{usergrade,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingname != null">
+        #{buildingname,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingid != null">
+        #{buildingid,jdbcType=INTEGER},
+      </if>
+      <if test="room != null">
+        #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null">
+        #{useremail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbxy.bxt.user.model.User">
+    update bxt_user
+    <set>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="usernum != null">
+        userNum = #{usernum,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usergrade != null">
+        userGrade = #{usergrade,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingname != null">
+        buildingName = #{buildingname,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingid != null">
+        buildingId = #{buildingid,jdbcType=INTEGER},
+      </if>
+      <if test="room != null">
+        room = #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="useremail != null">
+        userEmail = #{useremail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbxy.bxt.user.model.User">
+    update bxt_user
+    set openid = #{openid,jdbcType=VARCHAR},
+      userNum = #{usernum,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      userGrade = #{usergrade,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      buildingName = #{buildingname,jdbcType=VARCHAR},
+      buildingId = #{buildingid,jdbcType=INTEGER},
+      room = #{room,jdbcType=VARCHAR},
+      userEmail = #{useremail,jdbcType=VARCHAR}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <select id="countByOpenid" parameterType="com.hbxy.bxt.user.model.User" resultType="java.lang.Integer">
+    select count(*)
+    from bxt_user
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
+  <update id="updateByOpenid" parameterType="com.hbxy.bxt.user.model.User">
+    update bxt_user
+    set
+      userNum = #{usernum,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      userGrade = #{usergrade,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      buildingName = #{buildingname,jdbcType=VARCHAR},
+      buildingId = #{buildingid,jdbcType=INTEGER},
+      room = #{room,jdbcType=VARCHAR},
+      userEmail = #{useremail,jdbcType=VARCHAR}
+    where openid = #{openid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByOpenid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    *
+    from bxt_user
+    where openid = #{openid,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

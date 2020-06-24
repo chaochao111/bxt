@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbxy.bxt.building.dao.BuildingMapper">
+  <resultMap id="BaseResultMap" type="com.hbxy.bxt.building.model.Building">
+    <id column="buildingid" jdbcType="INTEGER" property="buildingid" />
+    <result column="buildingcode" jdbcType="VARCHAR" property="buildingcode" />
+    <result column="buildingname" jdbcType="VARCHAR" property="buildingname" />
+    <result column="detailaddress" jdbcType="VARCHAR" property="detailaddress" />
+    <result column="buildingsex" jdbcType="VARCHAR" property="buildingsex" />
+    <result column="mechanicId" jdbcType="INTEGER" property="mechanicid" />
+    <result column="mechanicName" jdbcType="VARCHAR" property="mechanicname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    buildingid, buildingcode, buildingname, detailaddress, buildingsex, mechanicId, mechanicName
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bxt_building
+    where buildingid = #{buildingid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from bxt_building
+    where buildingid = #{buildingid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hbxy.bxt.building.model.Building">
+    insert into bxt_building (buildingid, buildingcode, buildingname, 
+      detailaddress, buildingsex, mechanicId, 
+      mechanicName)
+    values (#{buildingid,jdbcType=INTEGER}, #{buildingcode,jdbcType=VARCHAR}, #{buildingname,jdbcType=VARCHAR}, 
+      #{detailaddress,jdbcType=VARCHAR}, #{buildingsex,jdbcType=VARCHAR}, #{mechanicid,jdbcType=INTEGER}, 
+      #{mechanicname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hbxy.bxt.building.model.Building">
+    insert into bxt_building
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="buildingid != null">
+        buildingid,
+      </if>
+      <if test="buildingcode != null">
+        buildingcode,
+      </if>
+      <if test="buildingname != null">
+        buildingname,
+      </if>
+      <if test="detailaddress != null">
+        detailaddress,
+      </if>
+      <if test="buildingsex != null">
+        buildingsex,
+      </if>
+      <if test="mechanicid != null">
+        mechanicId,
+      </if>
+      <if test="mechanicname != null">
+        mechanicName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="buildingid != null">
+        #{buildingid,jdbcType=INTEGER},
+      </if>
+      <if test="buildingcode != null">
+        #{buildingcode,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingname != null">
+        #{buildingname,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddress != null">
+        #{detailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingsex != null">
+        #{buildingsex,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanicid != null">
+        #{mechanicid,jdbcType=INTEGER},
+      </if>
+      <if test="mechanicname != null">
+        #{mechanicname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hbxy.bxt.building.model.Building">
+    update bxt_building
+    <set>
+      <if test="buildingcode != null">
+        buildingcode = #{buildingcode,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingname != null">
+        buildingname = #{buildingname,jdbcType=VARCHAR},
+      </if>
+      <if test="detailaddress != null">
+        detailaddress = #{detailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingsex != null">
+        buildingsex = #{buildingsex,jdbcType=VARCHAR},
+      </if>
+      <if test="mechanicid != null">
+        mechanicId = #{mechanicid,jdbcType=INTEGER},
+      </if>
+      <if test="mechanicname != null">
+        mechanicName = #{mechanicname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where buildingid = #{buildingid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hbxy.bxt.building.model.Building">
+    update bxt_building
+    set buildingcode = #{buildingcode,jdbcType=VARCHAR},
+      buildingname = #{buildingname,jdbcType=VARCHAR},
+      detailaddress = #{detailaddress,jdbcType=VARCHAR},
+      buildingsex = #{buildingsex,jdbcType=VARCHAR},
+      mechanicId = #{mechanicid,jdbcType=INTEGER},
+      mechanicName = #{mechanicname,jdbcType=VARCHAR}
+    where buildingid = #{buildingid,jdbcType=INTEGER}
+  </update>
+  <select id="findAllBuilding" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    *
+    from bxt_building
+  </select>
+  <select id="findAllBuildingByMechanicId" parameterType="Integer" resultType="Integer">
+    select distinct  buildingid from bxt_building where mechanicId = #{mechanicId,jdbcType=INTEGER};
+  </select>
+</mapper>
